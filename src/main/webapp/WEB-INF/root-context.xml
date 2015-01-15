@@ -1,0 +1,33 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+    <!-- Enables the Spring MVC @Controller programming model -->
+    <mvc:annotation-driven/>
+
+    <!-- Scan for components under this package -->
+    <context:component-scan base-package="com.foxeditor" >
+    </context:component-scan>
+
+    <!-- Initialization for data source -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://db4free.net:3306/forigle"/>
+        <property name="username" value="mansworld"/>
+        <property name="password" value="man1man"/>
+    </bean>
+
+    <!-- Definition for userJDBCTemplate bean -->
+
+    <!-- Import spring security configurations -->
+    <import resource="classpath:spring-dao/spring-dao.xml" />
+
+</beans>
