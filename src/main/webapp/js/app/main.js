@@ -10,8 +10,8 @@ require.config({
 require([
     "jquery",
     "Widgets/Editor/fEditor"
-], function($, Application) {
+], function($, editor) {
     $(document).ready(function() {
-//        Application.init();
+        editor.create($("#editor"));
     });
 });

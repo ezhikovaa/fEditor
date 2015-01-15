@@ -1,18 +1,160 @@
-html{
+html {
     width: 100%;
     height: 100%;
     margin: 0;
 }
 
-body{
+body {
     width: 100%;
     height: 100%;
     margin: 0;
 }
 
-div.main-container{
-    width: 1024px;
-    height: 768px;
-    margin: auto;
-    background-color: antiquewhite;
+#editor {
+    width: 500px;
+}
+
+div.fox-editor {
+    padding: 0;
+    margin: 0;
+    background-color: #ffffff;
+    border: 1px solid darkgrey;
+    width: auto;
+    height: auto;
+    box-sizing: content-box;
+    position: static;
+    display: block;
+}
+
+div.control-panel {
+    width: 100%;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    background-color: darkgrey;
+}
+
+div.editor-view {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    box-sizing: content-box;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    position: static;
+    text-decoration: none;
+    transition: none 0s ease 0s;
+    vertical-align: baseline;
+    width: auto;
+    display: block;
+    overflow: hidden;
+}
+
+iframe.editor-view {
+    background-color: #ffffff;
+    border: 0 none;
+    box-sizing: content-box;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: static;
+    text-decoration: none;
+    transition: none 0s ease 0s;
+    vertical-align: baseline;
+    width: 100%;
+}
+
+div.panel {
+    width: 100%;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    background-color: darkgrey;
+}
+
+span.tool-group {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: -moz-linear-gradient(center top, #fff, #e4e4e4) repeat scroll 0 0 #e4e4e4;
+    border-color: #a6a6a6 #a6a6a6 #979797;
+    border-image: none;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 2px rgba(255, 255, 255, 0.15) inset, 0 1px 0 rgba(255, 255, 255, 0.15) inset;
+    float: left;
+    margin: 0 6px 5px 55px;
+    border-collapse: collapse;
+    box-sizing: content-box;
+    color: #000;
+    cursor: auto;
+    font: 12px Arial, Helvetica, Tahoma, Verdana, sans-serif;
+    height: auto;
+    padding: 0;
+    position: static;
+    text-align: left;
+    text-decoration: none;
+    transition: none 0s ease 0s;
+    vertical-align: baseline;
+    white-space: nowrap;
+    width: auto;
+}
+
+.tool-group .tool-separator {
+    background-color: #d1d1d1;
+    border: 0 none;
+    display: inline-block;
+    float: left;
+    font-size: 0;
+    height: 18px;
+    line-height: 0;
+    margin-top: 4px;
+    padding: 0;
+    vertical-align: middle;
+    width: 1px;
+}
+
+a.f-tool-button {
+    height: 18px;
+    width: 18px;
+    display: inline-block;
+    border: 0 none;
+    font-size: 0;
+    vertical-align: middle;
+    line-height: 0;
+    padding: 4px 6px;
+    float: left;
+}
+
+.f-tool-button:hover {
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3) inset;
+    background-color: #ccc;
+}
+
+a span.f-icon {
+    background-repeat: no-repeat;
+    cursor: inherit;
+    display: inline-block;
+    float: left;
+    height: 16px;
+    margin-top: 1px;
+    width: 16px;
+    border: 0 none;
+    border-collapse: collapse;
+    box-sizing: content-box;
+    color: #000;
+    font: 12px Arial, Helvetica, Tahoma, Verdana, sans-serif;
+    padding: 0;
+    position: static;
+    text-align: left;
+    text-decoration: none;
+    transition: none 0s ease 0s;
+    vertical-align: baseline;
+    white-space: nowrap;
+}
+
+span.f-i-cut {
+    background: url("../img/icon/email.png") no-repeat 0 0 rgba(0, 0, 0, 0);
 }
