@@ -10,67 +10,14 @@ body {
     margin: 0;
 }
 
-#editor {
-    width: 500px;
+.main-container {
+    width:1024px;
+    height: 780px;
+    margin: auto;
 }
 
-div.fox-editor {
-    padding: 0;
-    margin: 0;
-    background-color: #ffffff;
-    border: 1px solid darkgrey;
-    width: auto;
-    height: auto;
-    box-sizing: content-box;
-    position: static;
-    display: block;
-}
 
-div.control-panel {
-    width: 100%;
-    height: 50px;
-    margin: 0;
-    padding: 0;
-    background-color: darkgrey;
-}
 
-div.editor-view {
-    background: none repeat scroll 0 0 transparent;
-    border: 0 none;
-    box-sizing: content-box;
-    height: auto;
-    margin: 0;
-    padding: 0;
-    position: static;
-    text-decoration: none;
-    transition: none 0s ease 0s;
-    vertical-align: baseline;
-    width: auto;
-    display: block;
-    overflow: hidden;
-}
-
-iframe.editor-view {
-    background-color: #ffffff;
-    border: 0 none;
-    box-sizing: content-box;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    position: static;
-    text-decoration: none;
-    transition: none 0s ease 0s;
-    vertical-align: baseline;
-    width: 100%;
-}
-
-div.panel {
-    width: 100%;
-    height: 20px;
-    margin: 0;
-    padding: 0;
-    background-color: darkgrey;
-}
 
 span.tool-group {
     -moz-border-bottom-colors: none;

@@ -10,8 +10,13 @@ require.config({
 require([
     "jquery",
     "Widgets/Editor/fEditor"
-], function($, editor) {
-    $(document).ready(function() {
-        editor.create($("#editor"));
+], function ($, editor) {
+    editor.config({
+        baseURL: "js/app/Widgets"
+    });
+    $(document).ready(function () {
+        editor.create($("#editor"), {
+            style: "Standart"
+        });
     });
 });

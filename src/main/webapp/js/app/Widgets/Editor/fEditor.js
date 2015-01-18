@@ -1,39 +1,19 @@
 define([
     "jquery",
+    "./config",
+    "./editor/util",
     "text!./template/fEditor.html"
-], function($, template) {
+], function ($, config, util, template) {
 
-    function getElementStyle(a) {
-        var sheets = $("iframe.editor-view")[0].contentWindow.document.styleSheets, o = {};
-        for (var i in sheets) {
-            var rules = sheets[i].rules || sheets[i].cssRules;
-            for (var r in rules) {
-                if (a.is(rules[r].selectorText)) {
-                    o = $.extend(o, css2json(rules[r].style), css2json(a.attr('style')));
-                }
-            }
-        }
-        return o;
-    }
-
-    function css2json(css) {
-        var s = {};
-        if (!css) return s;
-        if (css instanceof CSSStyleDeclaration) {
-            console.dir(css);
-            for (var i in css) {
-                if ((css[i]).toLowerCase) {
-                    s[(css[i]).toLowerCase()] = (css[css[i]]);
-                }
-            }
-        } else if (typeof css == "string") {
-            css = css.split("; ");
-            for (var i in css) {
-                var l = css[i].split(": ");
-                s[l[0].toLowerCase()] = (l[1]);
-            }
-        }
-        return s;
+    function insertP(window) {
+        var doc = window.document, b = $(doc).find("body")[0];
+        b.innerHTML = "<p></p>";
+        var root = $(b).find("p")[0],
+            rng = doc.createRange(),
+            sel = window.getSelection();
+        rng.selectNodeContents(root);
+        sel.removeAllRanges();
+        sel.addRange(rng);
     }
 
     return {
@@ -42,33 +22,44 @@ define([
         options: {
             name: "Fox Editor",
             width: "600px",
-            height: "450px"
+            height: "350px"
         },
 
-        create: function(target, options) {
+        config: function (prop) {
+            var h = prop.baseURL.charAt(prop.baseURL.length - 1) === "/" ? "" : "/";
+            config.baseURL = prop.baseURL + h;
+        },
+
+        create: function (target, options) {
+            util.convertImgToBase64('js/app/Widgets/Editor/img/minimize.png', function (base64Img) {
+                console.log(base64Img);
+            }, "image/png");
+
             var ctx = this, element = ctx.element;
+            $("<link href=\"" + config.baseURL + "Editor/css/icons.css\" rel=\"stylesheet\">").appendTo($("head"));
+            $("<link href=\"" + config.baseURL + "Editor/css/" + options.style
+                + ".css\" rel=\"stylesheet\">").appendTo($("head"));
             element = $(template).replaceAll(target);
             element.css("width", ctx.options.width);
             var h1 = element.find("div.control-panel").height(), h2 = element.find("div.panel").height();
             element.find("div.editor-view").css("height", (parseInt(ctx.options.height) - h1 - h2) + "px");
-            var frame = $("iframe.editor-view").attr("src", "/js/app/Widgets/Editor/template/Frame.html");
-            $(frame).load(function() {
-                $(frame.contents()).find("body").keyup(function() {
-                    var doc = frame[0].contentWindow.document;
-                    var b = frame.contents().find("body")[0];
-                    console.log(b.innerHTML);
-                    if (b.childNodes.length == 1 && (!b.firstChild.localName || b.firstChild.localName == "br")) {
-                        b.innerHTML = "<p></p>";
-                        var root = $(b).find("p")[0];
-                        var rng = doc.createRange();
-                        rng.selectNodeContents(root);
-                        var sel = frame[0].contentWindow.getSelection();
-                        sel.removeAllRanges();
-                        sel.addRange(rng);
+            var frame = $("iframe.editor-view", element);//.attr("src", config.baseURL + "Editor/template/Frame.html");
+            frame.load(function () {
+                var body = $(frame.contents()).find("body"), window = frame[0].contentWindow;
+                body.attr("contenteditable", "true");
+                insertP(window);
+                body.find("p").append("<br>");
+                body.bind("keydown", function (e) {
+                    if (e.keyCode == 9) {
+                        e.preventDefault();
                     }
                 });
-                $(frame.contents()).find("body").click(function() {
-                    console.dir(getElementStyle($(frame.contents()).find("p")));
+                body.bind("keyup", function (e) {
+//                    console.dir(e);
+                    if (body[0].childNodes.length == 1 &&
+                        (!body[0].firstChild.localName || body[0].firstChild.localName == "br")) {
+                        insertP(window);
+                    }
                 });
             });
 
